@@ -42,7 +42,40 @@ const addManager = () => {
 
         ));
 }
+const Engineer = () => {
+    inquirer.prompt({
+        {  // team engineer’s name, ID, email, and GitHub username,
+            type: 'input',
+            message: 'What the engineer name?',
+            name: 'name'
+        },
+        {
+            type: 'list',
+            message: 'What the role id?',
+            choice: ['Manager', 'Engineer', 'Intern'],
+            name: 'role'
+        },
+        {
+            type: 'input',
+            message: 'What is your email address?',
+            name: 'email'
+        },
+        {
+            type: 'input',
+            message: "What the github username?",
+            name: 'username'
+        },
+    ]).then(({ name, id, email, gitHubUserName }) => {
+            const addedEngineer = new Engineer( name, id, email, gitHubUserName )
 
+            // missing something in here
+
+            // go back to start
+            start();
+        }
+
+        ));
+}
 
 const addEmployee = () => {
     inquirer.prompt([
