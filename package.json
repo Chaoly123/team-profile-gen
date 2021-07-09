@@ -1,0 +1,19 @@
+{
+  "name": "oop-mini-proj",
+  "version": "1.0.0",
+  "description": "Work with a partner to implement the following user story:",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^8.1.1",
+    "test": "^0.6.0"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6"
+  }
+}
