@@ -7,4 +7,4 @@ class Employee {
     }
   }
 
-  module.exports = Product;
+  module.exports = Employee;
