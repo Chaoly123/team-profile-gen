@@ -67,7 +67,7 @@ const addEngineer = () => {
             name: 'username'
         },
     ]).then(({ name, id, email, gitHubUserName }) => {
-            const addedEngineer = new Engineer( name, id, email, gitHubUserName )
+            const addedEngineer = new Engineer(name, id, email, gitHubUserName)
 
             // missing something in here
 
@@ -101,8 +101,8 @@ const addIntern = () => {
             message: "What the school you graduated from?",
             name: 'school'
         },
-    ]).then(({ name, id, email, school  }) => {
-            const addedIntern = new Intern( name, id, email, school )
+    ]).then(({ name, id, email, school }) => {
+            const addedIntern = new Intern(name, id, email, school)
 
             // missing something in here
 
@@ -141,7 +141,35 @@ const addEmployee = () => {
     })
 }
 
+// Begin the app
+const start = () => {
+    inquirer.prompt([
+        {
+            type: "list",
+            message: "Choose an option:",
+            choices: ["Add Employee By Role", "View Employee By Role", "View Employee By Email",],
+            name: "initialChoice"
+        }
+    ]).then(resp => {
+        switch (resp.initialChoice) {
+            case "Add Employee By Role":
+                break;
 
+            case "View Employee by Role":
+                break;
+
+            case "View Employee By Email":
+                break;
+
+            default:
+                break;
+        }
+    })
+}
+
+
+
+start();
 // return inquirer
 //   .prompt(
 //     {
