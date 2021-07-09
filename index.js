@@ -2,23 +2,24 @@
 
 
 const inquirer = require("inquirer");
-const Manager = require("./workers./Manager");
-const Engineer = require("./workers./Engineer");
-const Intern = require("./workers./Intern");
-const { start } = require("repl");
+const Manager = require("./workers/Manager");
+const Engineer = require("./workers/Engineer");
+const Intern = require("./workers/Intern");
+// const { start } = require("repl");
+const generateHTML = require("./html")
+const arrEmployees = [];
 
 // Displays questions for adding manager
 const addManager = () => {
-    inquirer.prompt({
+    inquirer.prompt([
         {  // team manager’s name, employee ID, email address, and office number
             type: 'input',
             message: 'What the manager name?',
             name: 'name'
         },
         {
-            type: 'list',
+            type: 'input',
             message: 'What the role id?',
-            choice: ['Manager', 'Engineer', 'Intern'],
             name: 'role'
         },
         {
@@ -29,32 +30,31 @@ const addManager = () => {
         {
             type: 'input',
             message: "What the manager's office number?",
-            name: 'office number'
+            name: 'officeNum'
         },
     ]).then(({ name, role, email, officeNum }) => {
             const addedManager = new Manager(name, role, email, officeNum)
 
             // missing something in here
-
+            arrEmployees.push(addedManager)
             // go back to start
-            start();
+            addEmployee();
         }
 
-        ));
+        );
 }
 
 const addEngineer = () => {
-    inquirer.prompt({
+    inquirer.prompt([
         {  // team engineer’s name, ID, email, and GitHub username,
             type: 'input',
             message: 'What the engineer name?',
             name: 'name'
         },
         {
-            type: 'list',
+            type: 'input',
             message: 'What the role id?',
-            choice: ['Manager', 'Engineer', 'Intern'],
-            name: 'role'
+            name: 'id'
         },
         {
             type: 'input',
@@ -64,32 +64,31 @@ const addEngineer = () => {
         {
             type: 'input',
             message: "What the github username?",
-            name: 'username'
+            name: 'gitHubUserName'
         },
     ]).then(({ name, id, email, gitHubUserName }) => {
             const addedEngineer = new Engineer(name, id, email, gitHubUserName)
 
             // missing something in here
-
+            arrEmployees.push(addedEngineer)
             // go back to start
-            start();
+            addEmployee();
         }
 
-        ));
+        );
 }
 
 const addIntern = () => {
-    inquirer.prompt({
+    inquirer.prompt([
         {  // team intern’s name, ID, email, and school
             type: 'input',
             message: 'What the engineer name?',
             name: 'name'
         },
         {
-            type: 'list',
+            type: 'input',
             message: 'What the role id?',
-            choice: ['Manager', 'Engineer', 'Intern'],
-            name: 'role'
+            name: 'id'
         },
         {
             type: 'input',
@@ -105,12 +104,12 @@ const addIntern = () => {
             const addedIntern = new Intern(name, id, email, school)
 
             // missing something in here
-
+            arrEmployees.push(addedIntern)
             // go back to start
-            start();
+            addEmployee();
         }
 
-        ));
+        );
 }
 
 const addEmployee = () => {
@@ -118,15 +117,11 @@ const addEmployee = () => {
         {
             type: "list",
             message: "What kind of new employee are you adding?",
-            choices: ["Manager", "Engineer", "Intern"],
+            choices: ["Engineer", "Intern", "No more"],
             name: "employeeToAdd"
         }
     ]).then(({ employeeToAdd }) => {
         switch (employeeToAdd) {
-            case "Manager":
-                addManager();
-                break;
-
             case "Engineer":
                 addEngineer();
                 break;
@@ -136,40 +131,43 @@ const addEmployee = () => {
                 break;
 
             default:
+                //generate the HTML
+                generateHTML(arrEmployees)
+                // console.log(arrEmployees)
                 break;
         }
     })
 }
 
-// Begin the app
-const start = () => {
-    inquirer.prompt([
-        {
-            type: "list",
-            message: "Choose an option:",
-            choices: ["Add Employee By Role", "View Employee By Role", "View Employee By Email",],
-            name: "initialChoice"
-        }
-    ]).then(resp => {
-        switch (resp.initialChoice) {
-            case "Add Employee By Role":
-                break;
+// // Begin the app
+// const start = () => {
+//     inquirer.prompt([
+//         {
+//             type: "list",
+//             message: "Choose an option:",
+//             choices: ["Add Employee By Role", "View Employee By Role", "View Employee By Email",],
+//             name: "initialChoice"
+//         }
+//     ]).then(resp => {
+//         switch (resp.initialChoice) {
+//             case "Add Employee By Role":
+//                 break;
 
-            case "View Employee by Role":
-                break;
+//             case "View Employee by Role":
+//                 break;
 
-            case "View Employee By Email":
-                break;
+//             case "View Employee By Email":
+//                 break;
 
-            default:
-                break;
-        }
-    })
-}
+//             default:
+//                 break;
+//         }
+//     })
+// }
 
 
 
-start();
+addManager();
 // return inquirer
 //   .prompt(
 //     {

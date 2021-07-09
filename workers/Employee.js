@@ -5,6 +5,10 @@ class Employee {
       this.email = email;
       
     }
+
+    getRole() {
+      return "Employee"
+    }
   }
 
   module.exports = Employee;
