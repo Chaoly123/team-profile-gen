@@ -42,7 +42,8 @@ const addManager = () => {
 
         ));
 }
-const Engineer = () => {
+
+const addEngineer = () => {
     inquirer.prompt({
         {  // team engineer’s name, ID, email, and GitHub username,
             type: 'input',
@@ -77,6 +78,41 @@ const Engineer = () => {
         ));
 }
 
+const addIntern = () => {
+    inquirer.prompt({
+        {  // team intern’s name, ID, email, and school
+            type: 'input',
+            message: 'What the engineer name?',
+            name: 'name'
+        },
+        {
+            type: 'list',
+            message: 'What the role id?',
+            choice: ['Manager', 'Engineer', 'Intern'],
+            name: 'role'
+        },
+        {
+            type: 'input',
+            message: 'What is your email address?',
+            name: 'email'
+        },
+        {
+            type: 'input',
+            message: "What the school you graduated from?",
+            name: 'school'
+        },
+    ]).then(({ name, id, email, school  }) => {
+            const addedIntern = new Intern( name, id, email, school )
+
+            // missing something in here
+
+            // go back to start
+            start();
+        }
+
+        ));
+}
+
 const addEmployee = () => {
     inquirer.prompt([
         {
@@ -92,9 +128,11 @@ const addEmployee = () => {
                 break;
 
             case "Engineer":
+                addEngineer();
                 break;
 
             case "Intern":
+                addIntern();
                 break;
 
             default:
