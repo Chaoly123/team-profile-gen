@@ -19,7 +19,7 @@ You will have to install "node.js", open terminal, run "npm install", and then i
 
 The application is called by "node index.js" which you will have to write into the terminal command line. Then proceed to add in the team's specs areas. 
 
-Link to the [demo video] 
+Link to the [demo video] (https://drive.google.com/file/d/1m8D9ySOVr22qxmuU57aa8oTGR6qrXshh/view).
 
 ## Contributing 
 
